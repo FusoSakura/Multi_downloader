@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FETCH · Media Downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="frame">
+
+    <header class="header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">●</div>
+        <h1>FETCH</h1>
+        <div class="version">v1.0 · yt-dlp + ffmpeg</div>
+      </div>
+      <div class="header-meta">
+        <span id="statusLight" class="status-light idle">●</span>
+        <span id="statusText">STANDBY</span>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- 01 URL INPUT -->
+      <section class="block">
+        <label class="block-label">[01] SOURCE URL</label>
+        <div class="url-row">
+          <input type="text" id="urlInput" class="url-input"
+                 placeholder="https://..." autocomplete="off" spellcheck="false">
+          <button id="fetchBtn" class="btn-primary">FETCH&nbsp;&nbsp;▸</button>
+        </div>
+        <div id="errorBox" class="error-box hidden"></div>
+      </section>
+
+      <!-- 02 TARGET INFO -->
+      <section class="block hidden" id="infoBlock">
+        <label class="block-label">[02] TARGET</label>
+        <div class="info-row">
+          <div class="thumb-wrap">
+            <img id="thumbnail" alt="">
+          </div>
+          <div class="info-text">
+            <div id="videoTitle" class="info-title"></div>
+            <div id="videoMeta" class="info-meta"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 MODE -->
+      <section class="block hidden" id="modeBlock">
+        <label class="block-label">[03] MODE</label>
+        <div class="seg-control">
+          <button class="seg-btn active" data-mode="video">VIDEO&nbsp;·&nbsp;MP4</button>
+          <button class="seg-btn" data-mode="audio">AUDIO&nbsp;·&nbsp;MP3</button>
+        </div>
+      </section>
+
+      <!-- 04 QUALITY -->
+      <section class="block hidden" id="qualityBlock">
+        <label class="block-label" id="qualityLabel">[04] RESOLUTION</label>
+        <div id="qualityGrid" class="quality-grid"></div>
+      </section>
+
+      <!-- 05 EXECUTE -->
+      <section class="block hidden" id="executeBlock">
+        <button id="executeBtn" class="btn-execute">▶&nbsp;&nbsp;EXECUTE DOWNLOAD</button>
+      </section>
+
+      <!-- 06 PROGRESS -->
+      <section class="block hidden" id="progressBlock">
+        <label class="block-label">[05] TRANSFER</label>
+        <div class="progress-shell">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-stats">
+          <div><span class="stat-label">PROGRESS</span><span id="statProgress" class="stat-value">0.0%</span></div>
+          <div><span class="stat-label">SPEED</span><span id="statSpeed" class="stat-value">-</span></div>
+          <div><span class="stat-label">ETA</span><span id="statEta" class="stat-value">-</span></div>
+          <div><span class="stat-label">SIZE</span><span id="statSize" class="stat-value">-</span></div>
+        </div>
+      </section>
+
+      <!-- 07 RESULT -->
+      <section class="block hidden" id="resultBlock">
+        <label class="block-label">[06] OUTPUT</label>
+        <div class="result-row">
+          <div class="result-file">
+            <div class="result-name" id="resultFile"></div>
+            <div class="result-size" id="resultSize"></div>
+          </div>
+          <a id="downloadLink" class="btn-download" href="#" download>SAVE&nbsp;▾</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <span>LOCAL ONLY · NO TRACKING</span>
+      <span id="footerHost">— · —</span>
+    </footer>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
